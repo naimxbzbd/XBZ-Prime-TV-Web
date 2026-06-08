@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XBZ Prime TV - Premium Live TV</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- HLS.js for Live Streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Desktop Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">XBZ<span>PRIME</span></div>
+        <ul class="menu-items">
+            <li class="d-nav-item active" onclick="setDesktopActive(this); showHome()"><i class="fas fa-home"></i> Home</li>
+            <li class="d-nav-item" onclick="setDesktopActive(this); filterCategory('Sports')"><i class="fas fa-futbol"></i> Sports</li>
+            <li class="d-nav-item" onclick="setDesktopActive(this); filterCategory('Movies')"><i class="fas fa-film"></i> Movies</li>
+            <li class="d-nav-item" onclick="setDesktopActive(this); filterCategory('News')"><i class="fas fa-newspaper"></i> News</li>
+            <li class="d-nav-item" onclick="setDesktopActive(this); filterCategory('Kids')"><i class="fas fa-child"></i> Kids</li>
+            <li class="d-nav-item" onclick="setDesktopActive(this); filterCategory('Music')"><i class="fas fa-music"></i> Music</li>
+        </ul>
+    </nav>
+
+    <!-- Main App Content -->
+    <div class="main-content">
+        <!-- Top Navbar & Search -->
+        <header class="top-nav">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search channels or categories...">
+                <button onclick="document.getElementById('searchInput').value=''; showHome();" class="clear-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/40/E50914/FFFFFF?text=N" alt="User">
+            </div>
+        </header>
+
+        <div id="appBody">
+            <!-- Hero Auto Slider -->
+            <section class="hero-slider" id="heroSlider">
+                <div class="hero-bg" id="heroBg"></div>
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="badge"><i class="fas fa-broadcast-tower"></i> LIVE NOW</span>
+                    <h1 id="heroTitle">Loading Channels...</h1>
+                    <p id="heroCategory">Please wait</p>
+                    <button class="play-btn" id="heroPlayBtn"><i class="fas fa-play"></i> Watch Live</button>
+                </div>
+            </section>
+
+            <!-- Search Results -->
+            <section id="searchResultsContainer" class="hidden">
+                <h2 class="section-title" style="padding: 0 40px;">Search Results</h2>
+                <div class="grid-container" id="searchResultsGrid"></div>
+            </section>
+
+            <!-- Dynamic Category & History Rows -->
+            <div id="mainRowsContainer"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation (App Style) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="b-nav-item active" onclick="setMobileActive(this); showHome()"><i class="fas fa-home"></i><span>Home</span></div>
+        <div class="b-nav-item" onclick="setMobileActive(this); filterCategory('Sports')"><i class="fas fa-futbol"></i><span>Sports</span></div>
+        <div class="b-nav-item" onclick="setMobileActive(this); filterCategory('Movies')"><i class="fas fa-film"></i><span>Movies</span></div>
+        <div class="b-nav-item" onclick="setMobileActive(this); filterCategory('News')"><i class="fas fa-newspaper"></i><span>News</span></div>
+        <div class="b-nav-item" onclick="setMobileActive(this); filterCategory('Kids')"><i class="fas fa-child"></i><span>Kids</span></div>
+    </nav>
+
+    <!-- Video Player Overlay -->
+    <div id="playerContainer" class="hidden">
+        <div class="watermark">Naim Xbz</div>
+        <button id="closePlayerBtn" class="close-btn"><i class="fas fa-times"></i></button>
+        <video id="tvPlayer" controls autoplay playsinline></video>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
